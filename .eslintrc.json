@@ -1,0 +1,68 @@
+{
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
+
+    "import/no-cycle": "error",
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [
+          {
+            "target": "./src/domain",
+            "from": "./src/application",
+            "message": "Domain must not import from Application."
+          },
+          {
+            "target": "./src/domain",
+            "from": "./src/infrastructure",
+            "message": "Domain must not import from Infrastructure."
+          },
+          {
+            "target": "./src/domain",
+            "from": "./src/interfaces",
+            "message": "Domain must not import from Interfaces."
+          },
+          {
+            "target": "./src/application",
+            "from": "./src/infrastructure",
+            "message": "Application must not import from Infrastructure."
+          },
+          {
+            "target": "./src/application",
+            "from": "./src/interfaces",
+            "message": "Application must not import from Interfaces."
+          },
+          {
+            "target": "./src/interfaces",
+            "from": "./src/infrastructure",
+            "message": "Interfaces must not import from Infrastructure directly — go through Application."
+          },
+          {
+            "target": "./src/interfaces",
+            "from": "./src/domain",
+            "message": "Interfaces must not import from Domain directly — go through Application."
+          }
+        ]
+      }
+    ],
+
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "importOrder": [
+    "^(react|next)(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/domain/(.*)$",
+    "^@/application/(.*)$",
+    "^@/infrastructure/(.*)$",
+    "^@/interfaces/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
